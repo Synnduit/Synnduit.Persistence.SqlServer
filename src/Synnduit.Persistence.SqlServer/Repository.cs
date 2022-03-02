@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Composition;
+using System.ComponentModel.Composition;
 
 namespace Synnduit.Persistence.SqlServer
 {
