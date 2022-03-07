@@ -7,7 +7,7 @@ namespace Synnduit.Persistence.SqlServer
     /// Represents the identifier that uniquely identifies a known entity in the
     /// destination system along with associated mapping information.
     /// </summary>
-    [Table("[dbo].[MappedEntityIdentifier]")]
+    [Table("MappedEntityIdentifier", Schema = "dbo")]
     internal class MappedEntityIdentifier : IMappedEntityIdentifier
     {
         /// <summary>

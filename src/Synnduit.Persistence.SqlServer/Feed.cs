@@ -6,19 +6,17 @@ namespace Synnduit.Persistence.SqlServer
     /// <summary>
     /// Represents an entity feed.
     /// </summary>
-    [Table("[dbo].[Feed]")]
+    [Table("Feed", Schema = "dbo")]
     internal class Feed
     {
         /// <summary>
         /// Gets or sets the ID of the entity type.
         /// </summary>
-        [Key, Column(Order = 0)]
         public Guid EntityTypeId { get; set; }
 
         /// <summary>
         /// Gets or sets the ID of the source (external) system.
         /// </summary>
-        [Key, Column(Order = 1)]
         public Guid SourceSystemId { get; set; }
 
         /// <summary>

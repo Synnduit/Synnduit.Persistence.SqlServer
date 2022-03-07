@@ -6,7 +6,7 @@ namespace Synnduit.Persistence.SqlServer
     /// <summary>
     /// Represents an application parameter.
     /// </summary>
-    [Table("[dbo].[Parameter]")]
+    [Table("Parameter", Schema = "dbo")]
     internal class Parameter : IParameter
     {
         /// <summary>

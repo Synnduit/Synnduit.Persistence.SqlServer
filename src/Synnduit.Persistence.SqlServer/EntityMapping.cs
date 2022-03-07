@@ -7,7 +7,7 @@ namespace Synnduit.Persistence.SqlServer
     /// Represents an entity source/destination system identifier mapping along with
     /// associated information.
     /// </summary>
-    [Table("[dbo].[EntityMapping]")]
+    [Table("EntityMapping", Schema = "dbo")]
     internal class EntityMapping : IEntityMapping
     {
         /// <summary>

@@ -6,7 +6,7 @@ namespace Synnduit.Persistence.SqlServer
     /// <summary>
     /// Represents an external system.
     /// </summary>
-    [Table("[dbo].[ExternalSystem]")]
+    [Table("ExternalSystem", Schema = "dbo")]
     internal class ExternalSystem : IExternalSystem
     {
         /// <summary>

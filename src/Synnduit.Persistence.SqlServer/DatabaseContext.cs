@@ -6,16 +6,50 @@ using System.Text;
 namespace Synnduit.Persistence.SqlServer
 {
     /// <summary>
-    /// The context for the StarBridge database.
+    /// The context for the Synnduit database.
     /// </summary>
     internal class DatabaseContext : DbContext
     {
+        private readonly string connectionString;
+
         /// <summary>
         /// Initializes a new instance of the class.
         /// </summary>
-        public DatabaseContext()
+        /// <param name="connectionString">The connection string to use.</param>
+        public DatabaseContext(string connectionString)
         {
+            this.connectionString = connectionString;
             this.Database.SetCommandTimeout(720);
+        }
+
+        /// <summary>
+        /// Overriden to set up the SQL Server database provider.
+        /// </summary>
+        /// <param name="optionsBuilder">The options builder instance.</param>
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+            optionsBuilder.UseSqlServer(this.connectionString);
+        }
+
+        /// <summary>
+        /// Overriden to define those aspects of the data model that cannot be defined via
+        /// attributes.
+        /// </summary>
+        /// <param name="modelBuilder">The model builder instance.</param>
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder
+                .Entity<Feed>()
+                .HasKey(nameof(Feed.EntityTypeId), nameof(Feed.SourceSystemId));
+            modelBuilder
+                .Entity<SharedIdentifierSourceSystem>()
+                .HasKey(
+                    nameof(SharedIdentifierSourceSystem.SourceSystemId),
+                    nameof(SharedIdentifierSourceSystem.EntityTypeId),
+                    nameof(SharedIdentifierSourceSystem.SharedIdentifierSourceSystemId));
         }
 
         /// <summary>

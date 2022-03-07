@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Synnduit.Configuration;
 using System.ComponentModel.Composition;
 
 namespace Synnduit.Persistence.SqlServer
@@ -15,10 +16,14 @@ namespace Synnduit.Persistence.SqlServer
         /// <summary>
         /// Initializes a new instance of the class.
         /// </summary>
+        /// <param name="configurationProvider">
+        /// The <see cref="IConfigurationProvider"/> implementation to be used by the instance.
+        /// </param>
         [ImportingConstructor]
-        public Repository()
+        public Repository(IConfigurationProvider configurationProvider)
         {
-            this.context = new DatabaseContext();
+            this.context = new DatabaseContext(
+                configurationProvider.GetConnectionString());
         }
 
         /// <summary>

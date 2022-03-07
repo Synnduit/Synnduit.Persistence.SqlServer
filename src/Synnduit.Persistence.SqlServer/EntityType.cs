@@ -6,7 +6,7 @@ namespace Synnduit.Persistence.SqlServer
     /// <summary>
     /// Represents an entity type.
     /// </summary>
-    [Table("[dbo].[EntityType]")]
+    [Table("EntityType", Schema = "dbo")]
     internal class EntityType : IEntityType
     {
         /// <summary>
